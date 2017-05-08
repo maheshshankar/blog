@@ -10,8 +10,12 @@ const Schema = mongoose.Schema;
 const articleSchema = new Schema({
    title : String,
    description : String,
-   tags : String,
-   likes: Number
+   tags : Array,
+   likes: Number,
+   url: String,
+   comments: Array,
+   date : Date
+
 });
 
 

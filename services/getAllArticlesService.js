@@ -2,7 +2,7 @@
  * Created by vemulma on 3/22/2017.
  */
 
-const Article = require('../schema/articleSchema.js');
+const Article = require('../schema/newArticleSchema.js');
 
 function getAllArticles(req){
     return new Promise(function(resolve, reject){

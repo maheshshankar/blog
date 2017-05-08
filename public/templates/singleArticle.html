@@ -1,0 +1,104 @@
+<div class="col-md-12 single single-post postid-22 single-format-standard cherry-responsive cherry-with-sidebar" dir="ltr">
+    <!--<div class="cherry-breadcrumbs"><div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12"></div>
+            <div class="col-md-12 col-sm-12">
+                <div class="cherry-breadcrumbs_content">
+                    <div class="cherry-breadcrumbs_wrap"><div class="cherry-breadcrumbs_item"><a href="https://ld-wp.template-help.com/wordpress_57865/" class="cherry-breadcrumbs_item_link is-home" rel="home" title="Home">Home</a></div>
+                        <div class="cherry-breadcrumbs_item"><div class="cherry-breadcrumbs_item_sep">|</div></div> <div class="cherry-breadcrumbs_item"><a href="https://ld-wp.template-help.com/wordpress_57865/category/uncategorized/" class="cherry-breadcrumbs_item_link" rel="tag" title="Uncategorized">Uncategorized</a></div>
+                        <div class="cherry-breadcrumbs_item"><div class="cherry-breadcrumbs_item_sep">|</div></div> <div class="cherry-breadcrumbs_item"><span class="cherry-breadcrumbs_item_target">Establishing Your Brand on College Campuses</span></div>
+                    </div>
+                </div></div>
+        </div>
+    </div>
+    </div>-->
+    <div id="site-wrapper" class="hfeed site">
+
+
+
+        <div id="content" class="site-content boxed extra-boxed">
+            <div class="col-md-12">
+
+
+
+                <div class="col-md-12"><div id="primary" class="content-area">
+                    <main id="main" class="site-main" role="main">
+                        <article class="cherry-has-entry-date cherry-has-entry-author cherry-has-entry-comments cherry-has-entry-cats clearfix post-22 post type-post status-publish format-standard has-post-thumbnail hentry category-business category-uncategorized tag-business tag-innovation" id="post-22">
+                            <header class="entry-header">
+                                <h2 class="entry-title">
+                                    {{articleData.title}}
+                                </h2>
+                            </header>
+                    <!--<figure class="entry-thumbnail cherry-thumb-l aligncenter large"><img width="1065" height="536" src="../../wp-content/uploads/2016/02/posts-5-1065x536.jpg" class="attachment-cherry-thumb-l size-cherry-thumb-l wp-post-image" alt="posts-5" /></figure>-->
+
+                    <div class="entry-content">
+                        {{articleData.description}}
+                    </div>
+
+
+                    <div class="entry-meta entry-meta-top">
+                        <div class="innermeta">
+        <span class="entry-terms_wrap category_wrap">
+		<span class="entry-terms category">
+		<a href="" rel="tag">
+            <ul class="list-unstyled list-inline">
+                <li ng-repeat="tag in articleData.tags">{{tag}}</li>
+            </ul>
+
+        </a></span></span>
+        <span ng-hide="disAbleLike === false">{{articleData.likes}}<a href="" class="comments-link" ng-click="likeArticle('Like', articleData._id)"><i class="glyphicon glyphicon-thumbs-up"></i>Likes</a></span>
+        <span ng-hide="disAbleLike === true"><a href="" class="comments-link" ng-click="likeArticle('UnLike', articleData._id)"><i class="glyphicon glyphicon-thumbs-down"></i>UnLike</a></span>
+        <span class="comments-link"><a href="">{{articleData.comments.length}} Comments</a></span>
+                        </div>
+                    </div>
+                </article>
+                    <div id="comments" class="comments-area">
+                        <div class="comments">
+
+                            <h3 class="comments-title">{{articleData.comments.length}} Comments</h3><ol class="comment-list">
+                            <li class="comment even thread-even depth-1 parent" id="comment-28" ng-repeat="comment in articleData.comments | limitTo:5" >
+
+                                <article id="div-comment-28" class="comment-body">
+
+                                    <div class="comment-wrap">
+                                        <div class="comment-content">
+                                            <p>{{comment}}</p>
+
+                                        </div>
+                                        <!--<div class="reply">
+                                            <a rel='nofollow' class='comment-reply-link' href='index094c.html?replytocom=28#respond' onclick='return addComment.moveForm( "div-comment-28", "28", "respond", "22" )' aria-label='Reply to admin'>Reply</a>
+                                        </div>-->
+                                        <!--<div class="comment-metadata">
+                                            <time datetime="2015-05-25T11:31:55+00:00">May 25, 2015</time>
+                                        </div>-->
+                                    </div>
+                                </article><!-- .comment-body -->
+                            </li><!-- #comment-## -->
+                        </ol><!-- .children -->
+                            <div id="respond" class="comment-respond">
+                                <h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel reply</a></small></h3>
+                                <form ng-submit="addComment(articleData._id, articleComment)" id="commentform" class="comment-form" novalidate>
+                                    <textarea id="comment" name="comment" placeholder="Leave your message" cols="45" rows="8" ng-model="articleComment" aria-describedby="form-allowed-tags" aria-required="true" required="required"></textarea></p>
+                                    <!--<p class="comment-form-author">
+                                    <input id="author" name="author" type="text" placeholder="Name:" value="" size="30" aria-required='true' required='required' />
+                                    <p class="comment-form-email"><input id="email" name="email" type="text" placeholder="Email:" value="" size="30" aria-describedby="email-notes" aria-required='true' required='required' /></p>
+                                    <p class="comment-form-url"><input id="url" name="url" type="text" placeholder="Website:" value="" size="30" /></p>-->
+                                    <p class="form-submit">
+                                        <input name="submit" type="submit" id="submit" class="submit" value="Send" />
+                                        <!--<input name="reset" id="reset" class="reset" type="reset" value="Clear"/>
+                                        <input type='hidden' name='comment_post_ID' value='22' id='comment_post_ID' />
+                                        <input type='hidden' name='comment_parent' id='comment_parent' value='0' />-->
+                                    </p>
+                                </form>
+                            </div><!-- #respond -->
+
+                        </div>
+                    </div>
+
+                </main></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

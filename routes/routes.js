@@ -14,9 +14,13 @@ const appRouter = express.Router();
         app.use(express.static('public'));
 
         appRouter.get('/', articleController.getAllArticles);
+        appRouter.get('/getSingleArticle', articleController.getArticle);
+        appRouter.get('/getTagArticles', articleController.getArticlesTags);
         appRouter.post('/author', articleController.addArticle);
+        appRouter.post('/like', articleController.addLikes);
+        appRouter.post('/addComment', articleController.addComments);
 
-        app.use('/article', appRouter);
+        app.use('/blog', appRouter);
 
     }
 })()

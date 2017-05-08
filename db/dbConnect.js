@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 (function() {
     module.exports = function(app) {
-        mongoose.connect("mongodb://localhost/article_blog", function(err) {
+        mongoose.connect("mongodb://localhost/blog", function(err) {
             if (err) throw err;
             console.log('DB Connection Established...!');
         });

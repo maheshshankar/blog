@@ -6,7 +6,7 @@
 
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3200;
 
 var db = require('./db/dbConnect.js')(app);
 var config = require('./config/config.js')(app);

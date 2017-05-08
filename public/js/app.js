@@ -3,24 +3,25 @@ var app = angular.module("myApp",['ngRoute']);
 
 app.config(function($routeProvider){
 	$routeProvider
-	.when('/index',{templateUrl:'templates/userList.html',controller:'listCtrl'})
-	.when('/addUser',{templateUrl:'templates/addUser.html',controller:'addCtrl'})
-	.when('/edit/:id',{templateUrl:'templates/editUser.html',controller:'editCtrl'})
-
+	.when('/index',{templateUrl:'templates/articleList.html',controller:'listCtrl'})
+	.when('/newArticle',{templateUrl:'templates/addArticle.html',controller:'addCtrl'})
+	.when('/article/:id',{templateUrl:'templates/singleArticle.html',controller:'singleArticleCtrl'})
 	.otherwise({redirectTo:'/index'})
-})
+});
 
 app.controller("myCtrl",function(){
 	console.log("I m In Controller");
-})
+});
+
+
 
 app.controller("addCtrl",function($scope, $http, $location){
 	console.log("I m In add Controller");
-	$scope.registerUser = function(){
-		console.log($scope.register);
-		$http.post("http://localhost:3390/app/", $scope.register)
+	$scope.addNewArticle = function(){
+		console.log($scope.articleDetails);
+		$http.post("http://localhost:3200/blog/author", $scope.articleDetails)
 			.success(function(data){
-				if(data.msg === 'User Saved..!'){
+				if(data.msg === 'Article Saved Successfully..!'){
 					$location.path('/index');
 				}
 			})
@@ -29,71 +30,96 @@ app.controller("addCtrl",function($scope, $http, $location){
 			})
 	}
 
-})
+});
+
 
 app.controller("listCtrl",function($scope, $http, $location){
 	console.log("I m In list Controller");
-	$scope.getUserData = function(){
-		$http.get("http://localhost:3390/app/all")
+	$scope.enableComment = false;
+	$scope.getAllArticles = function(){
+		$http.get("http://localhost:3200/blog")
 				.success(function(data){
-					console.log(data);
-					$scope.userData = data;
+					$scope.allArticles = data;
 				})
 				.error(function(){
 					console.log("not found");
 				})
 	}
-	$scope.getUserData();
+	$scope.getAllArticles();
 
-	$scope.editUser = function(id){
-		$location.path('/edit/'+id);
-	}
+	/*$scope.getSingleArticle = function (id) {
+		$location.path('/article/' + id);
+    };*/
 
-	$scope.removeUser = function(id){
-		console.log(id);
-		$http.delete("http://localhost:3390/app/remove/" + id)
-				.success(function(data){
-					console.log(data);
-					$scope.getUserData();
-				})
-				.error(function(){
-					console.log("not found");
-				})
-	}
+	$scope.articleData = [];
+	$scope.searchTag = function () {
+        console.log($scope.tagName, $scope.allArticles);
+        if($scope.tagName){
+            for(var i = 0; i < $scope.allArticles.length; i++){
+                //$scope.articleData.push($scope.allArticles[i]);
+                //console.log(docs[0].tags[0]);
+                if($scope.allArticles[i].tags.includes($scope.tagName)){
+                    $scope.articleData.push($scope.allArticles[i]);
+                }
+            }
+            $scope.allArticles = $scope.articleData;
+        }else{
+            $scope.getAllArticles();
+        }
 
-})
+    }
 
-app.controller("editCtrl", function($scope, $http, $routeParams, $location){
-	console.log("in edit Ctrl");
-	console.log($routeParams);
-	var id = $routeParams.id;
-	$scope.register = {};
-	$scope.getUser = function(){
-		$http.get("http://localhost:3390/app/getRecord/" + id)
-				.success(function(data){
-					console.log('nameeme',data.name);
-					//$scope.userData = data;
-					$scope.register.name = data.name;
-					$scope.register.username = data.username;
-					$scope.register.email = data.email;
-				})
-				.error(function(){
-					console.log("not found");
-				})	
-	}
-	$scope.getUser();
+});
 
-	$scope.updateUser = function(){
-		console.log('updtetet',$scope.register)
-		$http.put("http://localhost:3390/app/edit/" + id, $scope.register)
-			.success(function(data){
-				if(data.msg === 'User Updated..!'){
-					$location.path('/index');
-				}
-			})
-			.error(function(){
-				console.log("not found");
-			})
-	}
 
-})
+app.controller("singleArticleCtrl",function($scope, $http, $routeParams){
+    console.log("I m In Single Article", $routeParams.id);
+    $scope.disAbleLike = true;
+    var articleId = $routeParams.id;
+    $scope.getArticleData = function (articleId) {
+        $http.get("http://localhost:3200/blog/getSingleArticle?id=" + articleId)
+            .success(function (data) {
+                $scope.articleData = data;
+            })
+            .error(function () {
+                console.log("not found");
+            })
+    };
+    $scope.getArticleData(articleId);
+
+    $scope.likeArticle = function (type, articleId) {
+    	console.log($scope.disAbleLike);
+    	if(type === 'Like'){
+            $scope.disAbleLike = false;
+		}else{
+            $scope.disAbleLike = true;
+		}
+        $http.post("http://localhost:3200/blog/like", {id: articleId, type: type})
+            .success(function (data) {
+                $scope.getArticleData(articleId);
+                //$scope.disAbleLike = false;
+            })
+            .error(function () {
+                console.log("not found");
+            })
+    };
+
+    /*$scope.disLikeArticle = function (type, articleId) {
+        console.log($scope.disAbleLike);
+        console.log(type, articleId);
+		$scope.disAbleLike = true;
+		$scope.likeArticle(type, articleId);
+    };*/
+
+    $scope.addComment = function (id, comment) {
+        $http.post("http://localhost:3200/blog/addComment", {id: id, comment: comment})
+            .success(function (data) {
+            	$scope.articleComment = '';
+                $scope.getArticleData(id);
+            })
+            .error(function () {
+                console.log("not found");
+            })
+    };
+
+});

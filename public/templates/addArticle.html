@@ -1,0 +1,68 @@
+<!--
+ <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title">New Article</div>
+                </div>
+
+                <div style="padding-top:30px" class="panel-body" >
+                    <form class="form-horizontal" role="form" name="resgisterForm">
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" name="title"
+                                   ng-model="articleDetails.title" value="" placeholder="Enter Title" required>
+                     		
+                        </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <textarea rows="4" cols="50" class="form-control" ng-model="articleDetails.description" placeholder="Enter Description" required>
+                </textarea>
+                        </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" name="tags"
+                                   ng-model="articleDetails.tags" value="" ng-list placeholder="Enter Tags" required>
+                        </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" name="url"
+                                   ng-model="articleDetails.url" value="" placeholder="Enter url" required>
+                        </div>
+
+                        <div style="margin-top:10px" class="form-group">
+                            <div class="col-sm-12 controls">
+                                <a class="btn btn-success" ng-click="addNewArticle()">Submit</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+<div class="col-md-6 col-md-offset-3">
+    <form name="form" role="form">
+        <div class="form-group">
+            <label for="username">Title</label>
+            <input type="text" name="title" id="firstName" class="form-control" ng-model="articleDetails.title" required />
+        </div>
+        <div class="form-group">
+            <label for="username">Description</label>
+            <textarea rows="4" cols="50" class="form-control" ng-model="articleDetails.description" placeholder="Enter Description" required>
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="username">Url</label>
+            <input type="text" name="url" id="username" class="form-control" ng-model="articleDetails.url" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Tags</label>
+            <input type="text" name="tags" id="password" class="form-control" ng-model="articleDetails.tags" ng-list required />
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" ng-click="addNewArticle()">POST</button>
+        </div>
+    </form>
+</div>
